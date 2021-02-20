@@ -7,17 +7,24 @@ import { Passenger } from './models/passenger';
   template: `
     <div class="app">
       <h1>{{title}}</h1>
-      <!-- the template way -->
-      <ul>
-        <ng-template [ngForOf]="passengers" ngFor let-passenger let-i="index" >
-          <li>
-            {{ i }}:
-            {{passenger.fullname}}
-          </li>
-        </ng-template>
-      </ul>
       <ul>
         <li *ngFor="let passenger of passengers; let i = index">
+        <span
+          class="status"
+          [class.checked-in]="passenger.checkedIn"></span>
+          {{ i }}:
+          {{passenger.fullname}}
+        </li>
+      </ul>
+      <!-- multiple class names -->
+      <ul>
+        <li *ngFor="let passenger of passengers; let i = index">
+        <span
+          class="status"
+          [ngClass]="{
+            'checked-in': passenger.checkedIn,
+            'checked-out': !passenger.checkedIn
+          }"></span>
           {{ i }}:
           {{passenger.fullname}}
         </li>
