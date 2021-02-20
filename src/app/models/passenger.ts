@@ -1,6 +1,9 @@
+import { Child } from "./child";
+
 export interface Passenger {
   id: number,
   fullname: string,
   checkedIn: boolean,
-  checkedInDate?: number
+  checkedInDate: number | null,
+  children: Child[] | null
 }
