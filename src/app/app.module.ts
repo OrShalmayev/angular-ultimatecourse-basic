@@ -8,7 +8,7 @@ import { ClassandstyleComponent } from './components/classandstyle/classandstyle
 @NgModule({
   declarations: [
     AppComponent,
-    ClassandstyleComponent
+    ClassandstyleComponent,
   ],
   imports: [
     BrowserModule,

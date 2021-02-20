@@ -15,9 +15,14 @@ import { Passenger } from './models/passenger';
           [class.checked-in]="passenger.checkedIn"></span>
           {{ i }}:
           {{passenger.fullname}}
+          <!-- <p>{{passenger | json}}</p> -->
+          <div class="date">
+            check in date:
+            {{ passenger.checkedInDate ? (passenger.checkedInDate | date: 'yMMM' | uppercase) : 'not checked in'}}
+          </div>
         </li>
       </ul>
-      <app-classandstyle [passengers]="passengers"></app-classandstyle>
+      <!-- <app-classandstyle [passengers]="passengers"></app-classandstyle> -->
   `
 })
 export class AppComponent {
@@ -26,27 +31,32 @@ export class AppComponent {
     {
       id: 1,
       fullname: 'Or',
-      checkedIn: true
+      checkedIn: true,
+      checkedInDate: 1233211233214
     },
     {
       id: 2,
       fullname: 'Or2',
-      checkedIn: true
+      checkedIn: true,
+      checkedInDate: 1233211283214
     },
     {
       id: 3,
       fullname: 'Or3',
-      checkedIn: false
+      checkedIn: false,
+      checkedInDate: null
     },
     {
       id: 4,
       fullname: 'Or4',
-      checkedIn: true
+      checkedIn: true,
+      checkedInDate: null
     },
     {
       id: 5,
       fullname: 'Or5',
-      checkedIn: false
+      checkedIn: false,
+      checkedInDate: 1233211283184
     },
   ];
   constructor(){ }
