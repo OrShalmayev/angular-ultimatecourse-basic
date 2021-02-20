@@ -1,0 +1,36 @@
+<!-- ngClass -->
+<h3>ngClass binding</h3>
+<ul>
+  <li *ngFor="let passenger of passengers; let i = index">
+  <span
+    class="status"
+    [ngClass]="{
+      'checked-in': passenger.checkedIn,
+      'checked-out': !passenger.checkedIn
+    }"></span>
+    {{ i }}:
+    {{passenger.fullname}}
+  </li>
+</ul>
+<!-- style binding -->
+<h3>Style binding</h3>
+<ul>
+  <li *ngFor="let passenger of passengers; let i = index">
+  <span
+    class="status"
+    [style.backgroundColor]="(passenger.checkedIn ? 'red' : '')"></span>
+    {{ i }}:
+    {{passenger.fullname}}
+  </li>
+</ul>
+<!-- ngStyle binding -->
+<h3>ngStyle binding</h3>
+<ul>
+  <li *ngFor="let passenger of passengers; let i = index">
+  <span
+    class="status"
+    [ngStyle]="{backgroundColor: (passenger.checkedIn ? 'green' : 'red')}"></span>
+    {{ i }}:
+    {{passenger.fullname}}
+  </li>
+</ul>

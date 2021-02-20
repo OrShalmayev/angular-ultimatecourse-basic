@@ -7,6 +7,7 @@ import { Passenger } from './models/passenger';
   template: `
     <div class="app">
       <h1>{{title}}</h1>
+      <h3>Passengers</h3>
       <ul>
         <li *ngFor="let passenger of passengers; let i = index">
         <span
@@ -16,20 +17,7 @@ import { Passenger } from './models/passenger';
           {{passenger.fullname}}
         </li>
       </ul>
-      <!-- multiple class names -->
-      <ul>
-        <li *ngFor="let passenger of passengers; let i = index">
-        <span
-          class="status"
-          [ngClass]="{
-            'checked-in': passenger.checkedIn,
-            'checked-out': !passenger.checkedIn
-          }"></span>
-          {{ i }}:
-          {{passenger.fullname}}
-        </li>
-      </ul>
-    </div>
+      <app-classandstyle [passengers]="passengers"></app-classandstyle>
   `
 })
 export class AppComponent {
