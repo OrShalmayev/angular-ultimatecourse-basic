@@ -11,26 +11,10 @@ import { Passenger } from 'src/app/models/passenger';
         [title]="title"
       >
       </passenger-count>
-      <passenger-detail></passenger-detail>
-      <ul>
-        <li *ngFor="let passenger of passengers; let i = index">
-        <span
-          class="status"
-          [class.checked-in]="passenger.checkedIn"></span>
-          {{ i }}:
-          {{passenger.fullname}}
-          <!-- <p>{{passenger | json}}</p> -->
-          <div class="date">
-            check in date:
-            {{ passenger.checkedInDate ? (passenger.checkedInDate | date: 'yMMM' | uppercase) : 'not checked in'}}
-          </div>
-          <!-- children -->
-          <div class="children">
-            <!-- ? safe navigation operator (if  this exists then continue to the next step) -->
-            children: {{ passenger.children?.length || 0 }}
-          </div>
-        </li>
-      </ul>
+      <passenger-detail
+        *ngFor="let passenger of passengers;"
+        [passenger]="passenger"
+      ></passenger-detail>
     </div>
   `,
 })
@@ -39,9 +23,6 @@ export class PassengerDashboardComponent implements OnInit {
   public title: string = 'Airline Passengers!';
   constructor() { }
 
-  /**
-   * Life Cycles
-   */
   ngOnInit() {
     console.log('PassengerDashboardComponent::ngonoinit')
     this.passengers = [
