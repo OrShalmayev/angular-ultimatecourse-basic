@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Passenger } from './models/passenger';
 
 @Component({
@@ -12,7 +12,12 @@ import { Passenger } from './models/passenger';
       <!-- <app-classandstyle [passengers]="passengers"></app-classandstyle> -->
   `
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   public title: string = 'Airline Passengers';
   constructor(){ }
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    console.log('AppComponent::ngonoinit')
+  }
 }
