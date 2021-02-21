@@ -6,7 +6,12 @@ import { Passenger } from 'src/app/models/passenger';
   styleUrls: ['./passenger-dashboard.component.scss'],
   template: `
     <div>
-      <h3>Passengers</h3>
+      <passenger-count
+        [passengers]="passengers"
+        [title]="title"
+      >
+      </passenger-count>
+      <passenger-detail></passenger-detail>
       <ul>
         <li *ngFor="let passenger of passengers; let i = index">
         <span
@@ -31,6 +36,7 @@ import { Passenger } from 'src/app/models/passenger';
 })
 export class PassengerDashboardComponent implements OnInit {
   public passengers: Passenger[];
+  public title: string = 'Airline Passengers!';
   constructor() { }
 
   /**

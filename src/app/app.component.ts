@@ -6,14 +6,12 @@ import { Passenger } from './models/passenger';
   styleUrls: ['./app.component.scss'],
   template: `
     <div class="app">
-      <h1>{{title}}</h1>
       <passenger-dashboard></passenger-dashboard>
     </div>
       <!-- <app-classandstyle [passengers]="passengers"></app-classandstyle> -->
   `
 })
 export class AppComponent implements OnInit {
-  public title: string = 'Airline Passengers';
   constructor(){ }
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
