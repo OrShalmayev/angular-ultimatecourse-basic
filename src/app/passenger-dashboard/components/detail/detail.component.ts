@@ -34,8 +34,8 @@ import { Passenger } from 'src/app/models/passenger';
 `,
 })
 export class DetailComponent implements OnInit {
-  @Input() public passenger: Passenger;
   public editing: boolean = false;
+  @Input() public passenger: Passenger;
   @Output() public delete: EventEmitter<number> = new EventEmitter<number>();
   @Output() public edit: EventEmitter<DetailComponent> = new EventEmitter<DetailComponent>();
   constructor() { }
