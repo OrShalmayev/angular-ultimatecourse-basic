@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Passenger } from 'src/app/models/passenger';
 
 @Component({
@@ -7,27 +7,49 @@ import { Passenger } from 'src/app/models/passenger';
   template: `
   <div>
     <span class="status" [class.checked-in]="passenger.checkedIn"></span>
-    {{passenger.fullname}}
-    <!-- <p>{{passenger | json}}</p> -->
+    <ng-container [ngSwitch]="editing">
+      <div *ngSwitchCase="false">
+        {{passenger.fullname}}
+      </div>
+      <div *ngSwitchCase="true">
+        <input
+        type="text"
+        [value]="passenger.fullname"
+        (input)="onNameChange(name.value)"
+        *ngIf="editing"
+        #name>
+      </div>
+    </ng-container>
     <div class="date">
       check in date:
       {{ passenger.checkedInDate ? (passenger.checkedInDate | date: 'yMMM' | uppercase) : 'not checked in'}}
     </div>
     <!-- children -->
     <div class="children">
-      <!-- ? safe navigation operator (if  this exists then continue to the next step) -->
       children: {{ passenger.children?.length || 0 }}
     </div>
+    <button (click)="handleEdit()">{{ editing ? 'Done' : 'Edit' }}</button>
+    <button (click)="handleDelete()">Delete</button>
   </div>
 `,
 })
 export class DetailComponent implements OnInit {
   @Input() public passenger: Passenger;
-
+  public editing: boolean = false;
+  @Output() public delete: EventEmitter<number> = new EventEmitter<number>();
+  @Output() public edit: EventEmitter<DetailComponent> = new EventEmitter<DetailComponent>();
   constructor() { }
-
   ngOnInit() {
     console.log('DetailComponent::ngonoinit')
   }
-
+  onNameChange(value:string):void{
+    this.passenger.fullname = value;
+  }
+  handleEdit():void{
+    this.editing = !this.editing;
+    this.edit.emit(this)
+  }
+  handleDelete():void {
+    this.delete.emit(this.passenger.id)
+  }
 }

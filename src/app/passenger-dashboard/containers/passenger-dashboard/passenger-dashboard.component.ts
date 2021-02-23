@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Passenger } from 'src/app/models/passenger';
+import { DetailComponent } from '../../components/detail/detail.component';
 
 @Component({
   selector: 'passenger-dashboard',
   styleUrls: ['./passenger-dashboard.component.scss'],
   template: `
-    <div>
+    <ng-container>
       <passenger-count
         [passengers]="passengers"
         [title]="title"
@@ -14,16 +15,17 @@ import { Passenger } from 'src/app/models/passenger';
       <passenger-detail
         *ngFor="let passenger of passengers;"
         [passenger]="passenger"
+        (delete)="handleDelete($event)"
+        (edit)="handleEdit($event)"
       ></passenger-detail>
-    </div>
+    </ng-container>
   `,
 })
 export class PassengerDashboardComponent implements OnInit {
   public passengers: Passenger[];
   public title: string = 'Airline Passengers!';
   constructor() { }
-
-  ngOnInit() {
+  ngOnInit():void {
     console.log('PassengerDashboardComponent::ngonoinit')
     this.passengers = [
       {
@@ -63,5 +65,14 @@ export class PassengerDashboardComponent implements OnInit {
       },
     ];
   }
-
+  handleDelete(passengerID: number):void {
+    this.passengers = this.passengers.filter( (p: Passenger) => p.id !== passengerID)
+  }
+  handleEdit(detailComponent: DetailComponent):void{
+    if (detailComponent.editing===true) {
+      console.log('were editing passenger:', detailComponent.passenger)
+    } else {
+      console.log('were done editing passenger:', detailComponent.passenger)
+    }
+  }
 }
