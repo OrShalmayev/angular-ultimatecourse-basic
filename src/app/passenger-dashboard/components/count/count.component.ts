@@ -7,7 +7,7 @@ import { Passenger } from 'src/app/models/passenger';
   template: `
     <div>
       <h1>{{title}}</h1>
-      <p>total checked in: {{ checkedInCount() }}/{{passengers.length}}</p>
+      <p>total checked in: {{ checkedInCount }}/{{passengers.length}}</p>
     </div>
   `,
 })
@@ -21,7 +21,7 @@ export class CountComponent implements OnInit {
     console.log('CountComponent::ngonoinit')
   }
 
-  public checkedInCount(): number {
+  public get checkedInCount(): number {
     if (!this.passengers) return;
     return this.passengers.filter( (passenger: Passenger) => passenger.checkedIn ).length;//END filter
   }//END checkedInCount
