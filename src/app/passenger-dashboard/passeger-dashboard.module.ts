@@ -5,11 +5,13 @@ import { PassengerDashboardComponent } from './containers/passenger-dashboard/pa
 // components
 import { CountComponent } from './components/count/count.component';
 import { DetailComponent } from './components/detail/detail.component';
+// Services
+import { PassengerDashboardService } from "../services/passenger-dashboard.service";
 
 @NgModule({
   declarations: [PassengerDashboardComponent, CountComponent, DetailComponent],
   imports: [CommonModule],
-  providers: [],
+  providers: [PassengerDashboardService],
   exports: [PassengerDashboardComponent]
 })
 export class PassengerDashboardModule {}
