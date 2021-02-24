@@ -12,6 +12,9 @@ import { DetailComponent } from '../../components/detail/detail.component';
         [title]="title"
       >
       </passenger-count>
+      <div *ngFor="let passenger of passengers;">
+      {{ passenger.fullname }}
+      </div>
       <passenger-detail
         *ngFor="let passenger of passengers;"
         [passenger]="passenger"
@@ -78,8 +81,6 @@ export class PassengerDashboardComponent implements OnInit {
         }
         return p;
       })
-      console.log('were done editing passenger:', this.passengers)
-      console.log('were done editing passenger:', detailComponent.passenger)
     }
   }
 }
