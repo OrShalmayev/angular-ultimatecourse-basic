@@ -72,6 +72,13 @@ export class PassengerDashboardComponent implements OnInit {
     if (detailComponent.editing===true) {
       console.log('were editing passenger:', detailComponent.passenger)
     } else {
+      this.passengers = this.passengers.map((p: Passenger) => {
+        if( detailComponent.passenger.id === p.id ){
+          p = {...detailComponent.passenger};
+        }
+        return p;
+      })
+      console.log('were done editing passenger:', this.passengers)
       console.log('were done editing passenger:', detailComponent.passenger)
     }
   }
